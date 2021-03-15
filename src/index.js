@@ -9,20 +9,22 @@ const livros = [{
         "titulo": "isso é um título", 
         "descricao": "isso é uma descrição", 
         "edicao": "essa é a edição", 
-        "autor": "esse é o autor"
+        "autor": "esse é o autor",
+        "isbn": "esse é o isbn"
     },
     {
         "id": 1,
         "titulo": "isso é um títul2", 
         "descricao": "isso é uma descrição2", 
         "edicao": "essa é a edição2", 
-        "autor": "esse é o autor2"
+        "autor": "esse é o autor2",
+        "isbn": "esse é o isbn"
     }
 ];
 
 app.post('/livros', (req, res, next) => {
-    const {titulo, descricao, edicao, autor} = req.body;
-    const livro = {id: count += 1, titulo, descricao, edicao, autor};
+    const {titulo, descricao, edicao, autor, isbn} = req.body;
+    const livro = {id: count += 1, titulo, descricao, edicao, autor, isbn};
     livros.push(livro);
 
     return res.status(201).json(livros);
@@ -33,7 +35,7 @@ app.get('/livros', (req, res, next) => {
 });
 
 app.put('/livros', (req, res, next) => {
-    const {id, titulo, descricao, edicao, autor} = req.body;
+    const {id, titulo, descricao, edicao, autor, isbn} = req.body;
     const livro = livros.find(livro => livro.id == id);
     
     if(!livro) {
@@ -44,6 +46,7 @@ app.put('/livros', (req, res, next) => {
     livro.descricao = descricao;
     livro.edicao = edicao;
     livro.autor = autor;
+    livro.isbn = isbn;
 
     return res.status(200).json(livro);
 });
